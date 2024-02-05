@@ -53,6 +53,10 @@ public class HttpServer {
             if(urisp.length >1){
                 if(urisp[1].equals("jpg") || urisp[1].equals("webp")){
                      context = HttpContext.getImg();
+                }else if(urisp[1].equals("css")){
+                    context = HttpContext.getCss();
+                }else if(urisp[1].equals("js")){
+                    context = HttpContext.getJs();
                 }
            }
             String res = "HTTP/1.1 200 OK\r\n"

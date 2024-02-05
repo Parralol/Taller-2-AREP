@@ -4,6 +4,8 @@
         <title>Form Example</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel = "stylesheet" href= "prueba.css">
+        <script type="text/javascript" src="prueba.js"></script>
     </head>
     <body>
         <h1>Form with GET</h1>
@@ -14,17 +16,6 @@
             <input type="button" value="Submit" onclick="loadGetMsg()">
         </form> 
         <div id="getrespmsg"></div>
-        <script>
-            function loadGetMsg() {
-                let nameVar = document.getElementById("name").value;
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload = function() {
-                    document.getElementById("getrespmsg").innerHTML =
-                    this.responseText;
-                }
-                xhttp.open("GET", "/cliente?name="+nameVar);
-                xhttp.send();
-            }
-        </script>
+        
     </body>
 </html>

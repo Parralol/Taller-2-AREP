@@ -8,5 +8,13 @@ public class HttpContext {
     public static final String getImg(){
         return "image/webp";
     }
+    public static final String getCss(){
+        return "text/css";
+    }
+
+    public static final String getJs(){
+        return "text/javascript";
+    }
+
 
 }

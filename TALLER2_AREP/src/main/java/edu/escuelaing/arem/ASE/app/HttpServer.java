@@ -1,15 +1,13 @@
 package edu.escuelaing.arem.ASE.app;
 
 import java.net.*;
+import java.util.Arrays;
 import java.io.*;
+
  
 public class HttpServer {
      
     public static void main(String[] args) throws IOException {
-        String res = "HTTP/1.1 200 OK\r\n"
-        + "Content-Type:text/html\r\n" + "\r\n";
-
-
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(35000);
@@ -48,14 +46,39 @@ public class HttpServer {
                     break;
                 }
             }
-            if(!uriStr.equals("/favicon.ico")){
-            try{
-                BufferedReader reader = new BufferedReader(new FileReader("TALLER2_AREP/src/main/resources/public/"+ uriStr));
-                String linea = null;
-                while((linea = reader.readLine()) != null ){
-                    res += linea;
+            String context = HttpContext.getHtml();
+
+            String[] urisp = uriStr.split("\\.");
+            System.out.println(Arrays.toString(urisp));
+            if(urisp.length >1){
+                if(urisp[1].equals("jpg") || urisp[1].equals("webp")){
+                     context = HttpContext.getImg();
                 }
-                reader.close();
+           }
+            String res = "HTTP/1.1 200 OK\r\n"
+            + "Content-Type:" + context +"\r\n";
+            OutputStream output = clientSocket.getOutputStream();
+            byte[] webpContent = {};
+            FileInputStream fin = null;
+            BufferedInputStream bin= null;
+            BufferedOutputStream bout= null;
+            if(!uriStr.equals("/favicon.ico")){
+                
+            try{
+                String filename ="TALLER2_AREP/src/main/resources/public"+ uriStr;
+                System.out.println(filename);
+                if(context.equals(HttpContext.getHtml())){
+                    BufferedReader reader = new BufferedReader(new FileReader(filename));
+                    String linea = null;
+                    while((linea = reader.readLine()) != null ){
+                        res += linea;
+                    }
+                    reader.close();
+                }else{
+                   fin = new FileInputStream(filename);
+                   bin = new BufferedInputStream(fin);
+                   bout = new BufferedOutputStream(output);
+                }
             }catch(Exception e){
                 System.out.println("An error occurred.");
                 e.printStackTrace();
@@ -67,8 +90,27 @@ public class HttpServer {
                 reader.close();
             }
         }
-            out.println(res);
- 
+           
+            if(!uriStr.equals("/favicon.ico") && context.equals(HttpContext.getHtml())){
+                    try (BufferedOutputStream bos = new BufferedOutputStream(output)) {
+                        bos.write(res.getBytes());
+                        bos.write(webpContent);
+                        bos.flush();
+                    }
+            }else{
+                if(!uriStr.equals("/favicon.ico")){
+                out.println(res);
+                int ch =0; ;  
+                while((ch=bin.read())!=-1)  
+                {  
+                bout.write(ch);  
+                }  
+                  
+                bin.close();  
+                fin.close();  
+                bout.close(); 
+                }
+            }
             out.close();
             in.close();
             clientSocket.close();
@@ -76,5 +118,4 @@ public class HttpServer {
         serverSocket.close();
     }
     
-
 }

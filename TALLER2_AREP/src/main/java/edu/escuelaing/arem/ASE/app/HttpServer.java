@@ -115,8 +115,7 @@ public class HttpServer {
            
             if(!uriStr.equals("/favicon.ico") && context.equals(HttpContext.getHtml())){
                     try (BufferedOutputStream bos = new BufferedOutputStream(output)) {
-                        bos.write(res.getBytes());
-                        bos.write(webpContent);
+                        
                         if(!newSearch){
                             String inline = "";
                             if(cache.containsKey(request)){
@@ -126,10 +125,13 @@ public class HttpServer {
                             }
                             cache.put(request, inline);
                             System.out.println(inline);
-                            out.println(inline);
+                            res = ( "HTTP/1.1 200 OK\r\n"
+                            + "Content-Type:" + context +"\r\n"+inline+"");
                         }else{
                             newSearch=false;
                         }
+                        bos.write(res.getBytes());
+                        bos.write(webpContent);
                         bos.flush();
                     }
             }else{

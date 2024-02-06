@@ -44,7 +44,7 @@ public class HttpServer {
             String uriStr = "";
             int count = 0;
             String request="";
-            String path = "";
+
                 
             while ((inputLine = in.readLine()) != null) {
                 if(firstLine){
@@ -53,17 +53,19 @@ public class HttpServer {
                 }
                 if(count == 0){
                     request = inputLine;
-                    path = getPath(request);
+                    newSearch=IsItNew(request);
                     request = getQuery(request);
                     count +=1;
+                    System.out.println(request+"<-------------- request");
+                    if(request.equals("")) newSearch=true;
                 }
                 uriStr = uriStr.split("\\?"+request)[0];
-                System.out.println(uriStr);
                 System.out.println("Received: " + inputLine);
                 if (!in.ready()) {
                     break;
                 }
             }
+            System.out.println(uriStr);
             String context = HttpContext.getHtml();
 
             String[] urisp = uriStr.split("\\.");
@@ -172,6 +174,17 @@ public class HttpServer {
         }
     }
 
+    private static boolean IsItNew(String text){
+        String[] deco1 = text.split(" ");
+        String[] deco2 = deco1[1].split("\\?");
+        System.out.println(Arrays.toString(deco2));
+        if(deco2.length >=2){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
 
     /**
      * Permite recibir el Json que se esta buscando
@@ -205,21 +218,6 @@ public class HttpServer {
             }
         }
         return res;
-    }
-
-    /**
-     * returns the path that the current user is using
-     * @param request
-     * @return
-     */
-    private static String getPath(String request){
-        String[] deco1 = request.split(" ");
-        String[] deco2 = deco1[1].split("\\?");
-        if(deco2.length <=1){
-            return deco2[0];
-        }else{
-            return deco2[0];
-        }
     }
     
 }

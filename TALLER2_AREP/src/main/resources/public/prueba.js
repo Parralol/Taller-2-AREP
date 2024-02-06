@@ -5,6 +5,6 @@ function loadGetMsg() {
         document.getElementById("getrespmsg").innerHTML =
         this.responseText;
     }
-    xhttp.open("GET", "/cliente?name="+nameVar);
+    xhttp.open("GET", "/cliente.html?name="+nameVar);
     xhttp.send();
 }

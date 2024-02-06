@@ -20,7 +20,23 @@ Lo unico que necesitas para extender la funcionalidad de este programa es que ag
 ### Diseño
 
   Este programa sigue el Principio Open/Closed, ya que no es un proyecto lo suficientemente grande para aplicar todo el principio SOLID, se usa el patron builder ya que se construye procedimentalmente una clase compleja a base de pasos pequeños y simples.
-  
+
+#### PRUEBAS REALIZADAS
+ todas las pruebas realizadas fueron de aceptacion, a la hora de probar el programa con diferentes parametros y verificando si tiene el comportamiento deseado
+
+1. prueba de busqueda de archivos
+   se usan las siguentes URI con  el fin de verificar la existencia de los archivos, ademas de inspeccionar el elemento
+
+   nosotros contamos los siguientes archivos:
+  ![image](https://github.com/Parralol/Taller-2-AREP/assets/110953563/59a93a29-2f32-4d77-be7e-eae87d3430d6)
+
+
+
+3. prueba de pagina central
+   
+4. prueba restapi
+
+
 ### Prerequisitos
 
   * conexión a internet

@@ -28,6 +28,7 @@ Lo unico que necesitas para extender la funcionalidad de este programa es que ag
    se usan las siguentes URI con  el fin de verificar la existencia de los archivos, ademas de inspeccionar el elemento
 
    nosotros contamos los siguientes archivos:
+   
   ![image](https://github.com/Parralol/Taller-2-AREP/assets/110953563/59a93a29-2f32-4d77-be7e-eae87d3430d6)
 
 

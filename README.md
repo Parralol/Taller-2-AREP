@@ -31,11 +31,19 @@ Lo unico que necesitas para extender la funcionalidad de este programa es que ag
    
   ![image](https://github.com/Parralol/Taller-2-AREP/assets/110953563/59a93a29-2f32-4d77-be7e-eae87d3430d6)
 
+Para verificar que existan iniciaremos el programa y usaremos inspeccionar elemento en el browser de preferencia,podremos observar que los archivos vitales son subidos a la misma pagina:
 
 
-3. prueba de pagina central
-   
-4. prueba restapi
+![image](https://github.com/Parralol/Taller-2-AREP/assets/110953563/472d3918-f14c-41c6-92e8-1cb0a2b5510f)
+
+y Como podremos observar, la pagina cargara correctamente:
+
+![image](https://github.com/Parralol/Taller-2-AREP/assets/110953563/2e19be50-580a-4bfe-83e9-a361c3f81493)
+
+Se realizo una consulta restApi antes de esto para poder mostrar que todo esta funcionando correctamente, inclusive cargando el CSS correcto de la pagina.
+
+Ahora, si deseamos acceder a los archivos en otra forma, es solo escribir el archivo en el path respectivo
+
 
 
 ### Prerequisitos
